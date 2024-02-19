@@ -6,7 +6,7 @@ static int	is_space(char c)
 		|| c == '\f' || c == '\r' || c == ' ');
 }
 
-long long	ft_atoll(const char *str)
+long long	atoll(const char *str)
 {
 	size_t		i;
 	long long	nbr;
