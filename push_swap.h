@@ -34,14 +34,12 @@ int	*convert_string_matrix_to_nums(int argc, char **argv);
 
 	* argv_error - error if argv is NULL
 	* allocation_error - error if malloc() failed
-	* big_string_error - error if string is too big for INT
 	* big_number_error - error if number result is bigger/lower MAX_INT/MIN_INT
-	* symbols_error - error if symbols are not digits
+	* string_error - error if the string does not match the rules
 */
 int	argv_error(char **argv);
 int	allocation_error(void *ptr);
-int	big_string_error(char *str);
 int	big_number_error(long long num);
-int	symbols_error(int argc, char **argv);
+int	string_error(int argc, char **argv);
 
 #endif

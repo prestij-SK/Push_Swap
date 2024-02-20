@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int	argv_error(char **argv)
+int argv_error(char **argv)
 {
 	if (!argv)
 	{
@@ -10,39 +10,74 @@ int	argv_error(char **argv)
 	return (0);
 }
 
-int	symbols_error(int argc, char **argv)
+static int	empty_string_error(char *str)
+{
+	if (!str) // I can make this function one line, but there is a risk to *NULL
+	{
+		printf("Error\n"); // <---------- LIBFT
+		return (1);
+	}
+	else if (!(*str))
+	{
+		printf("Error\n"); // <---------- LIBFT
+		return (1);
+	}
+	return (0);
+}
+
+static int	big_string_error(char *str, size_t str_len)
+{
+	if (str_len > INT_DIGITS)
+	{
+		if (str_len != INT_DIGITS_WITH_SIGN || (*str != '-' && *str != '+'))
+		{
+			printf("Error\n"); // <---------- LIBFT
+			return (1);
+		}
+	}
+	return (0);
+}
+
+static int	string_symbol_error(char *str, size_t str_len)
+{
+	if ((*str == '+' || *str == '-') && (str_len > 1))
+			++str;
+	while (*str != '\0')
+	{
+		if (!ft_isdigit(*str))
+		{
+			printf("Error\n"); // <---------- LIBFT
+			return (1);
+		}
+		++str;
+	}
+	return (0);
+}
+
+int string_error(int argc, char **argv)
 {
 	int		i;
 	int		j;
+	size_t	str_len;
 
 	if (!argv)
 		return (1);
 	i = 1; // to avoid executable file name
 	while (i < argc)
 	{
-		j = 0;
-		if (ft_strlen(argv[i]) == 0)
-		{
-			printf("Error\n"); // <---------- LIBFT
-				return (1);
-		}
-		if ((argv[i][0] == '+' || argv[i][0] == '-') && (ft_strlen(argv[i]) > 1))
-			++j;
-		while (argv[i][j] != '\0')
-		{
-			if (!ft_isdigit(argv[i][j]))
-			{
-				printf("Error\n"); // <---------- LIBFT
-				return (1);
-			}
-			++j;
-		}
+		if (empty_string_error(argv[i]))
+			return (1);
+		str_len = ft_strlen(argv[i]);
+		if (big_string_error(argv[i], str_len))
+			return (1);
+		if (string_symbol_error(argv[i], str_len))
+			return (1);
 		++i;
 	}
 	return (0);
 }
 
-int	allocation_error(void *ptr)
+int allocation_error(void *ptr)
 {
 	if (!ptr)
 	{
@@ -52,20 +87,7 @@ int	allocation_error(void *ptr)
 	return (0);
 }
 
-int	big_string_error(char *str)
-{
-	if (ft_strlen(str) > INT_DIGITS)
-	{
-		if (ft_strlen(str) > INT_DIGITS_WITH_SIGN || (str[0] != '-' || str[0] != '+'))
-		{
-			printf("Error\n"); // <---------- LIBFT
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	big_number_error(long long num)
+int big_number_error(long long num)
 {
 	if (num < MIN_INT || num > MAX_INT)
 	{

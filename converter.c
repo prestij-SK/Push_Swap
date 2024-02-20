@@ -12,11 +12,6 @@ static int	*get_nums_from_string(int argc, char **argv)
 	i = 1;
 	while (i < argc)
 	{
-		if (big_string_error(argv[i]))
-		{
-			free(nums);
-			return (NULL);
-		}
 		num = atoll(argv[i]);
 		if (big_number_error(num))
 		{
@@ -35,7 +30,7 @@ int	*convert_string_matrix_to_nums(int argc, char **argv)
 
 	if (argv_error(argv))
 		return (NULL);
-	if (symbols_error(argc, argv))
+	if (string_error(argc, argv))
 		return (NULL);
 	nums = get_nums_from_string(argc, argv);
 	if (!nums)

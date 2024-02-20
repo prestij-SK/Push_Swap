@@ -16,5 +16,6 @@ int	main(int argc, char **argv)
 		++i;
 	}
 	// start logic
+	free(nums);
 	return (0);
 }
