@@ -33,7 +33,5 @@ int	*convert_string_matrix_to_nums(int argc, char **argv)
 	if (string_error(argc, argv))
 		return (NULL);
 	nums = get_nums_from_string(argc, argv);
-	if (!nums)
-		return (NULL);
 	return (nums);
 }
