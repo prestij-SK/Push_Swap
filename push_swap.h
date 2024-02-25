@@ -4,13 +4,15 @@
 #include <stdlib.h>
 #include <stdio.h> // DELETE
 
+#include "stack.h"
+
 # define INT_DIGITS 10
 # define INT_DIGITS_WITH_SIGN 11
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
 
 /*
-	libft_funcs.c
+	Libft functions
 */
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
@@ -26,7 +28,7 @@ long long	atoll(const char *str);
 /*
 	converter.c functions
 
-	* get_nums_from_strings - get nums of matrix of strings
+	* get_nums_from_strings - get nums of matrix from strings
 */
 int	*get_nums_from_strings(int argc, char **argv, int *size);
 
