@@ -12,8 +12,9 @@
 /*
 	libft_funcs.c
 */
-int	ft_isdigit(int c);
+int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
+char	**ft_split(char const *s, char c);
 
 /*
 	utils.c functions
@@ -25,9 +26,9 @@ long long	atoll(const char *str);
 /*
 	converter.c functions
 
-	* convert_string_matrix_to_nums - get nums of matrix of strings
+	* get_nums_from_strings - get nums of matrix of strings
 */
-int	*convert_string_matrix_to_nums(int argc, char **argv);
+int	*get_nums_from_strings(int argc, char **argv, int *size);
 
 /*
 	error_handling.c functions

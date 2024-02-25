@@ -3,14 +3,15 @@
 int	main(int argc, char **argv)
 {
 	int	*nums;
+	int	size;
 
 	if (argc < 2)
 		return (0);
-	nums = convert_string_matrix_to_nums(argc, argv);
+	nums = get_nums_from_strings(argc, argv, &size);
 	if (!nums)
 		return (0);
 	int i = 0;
-	while (i < argc - 1)
+	while (i < size)
 	{
 		printf("%d ", nums[i]);
 		++i;

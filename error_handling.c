@@ -62,7 +62,7 @@ int string_error(int argc, char **argv)
 
 	if (!argv)
 		return (1);
-	i = 1; // to avoid executable file name
+	i = 0;
 	while (i < argc)
 	{
 		if (empty_string_error(argv[i]))
