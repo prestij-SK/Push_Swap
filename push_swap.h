@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h> // DELETE
 
-#include "stack.h"
+#include "my_stack.h"
 
 # define INT_DIGITS 10
 # define INT_DIGITS_WITH_SIGN 11
@@ -44,5 +44,16 @@ int	argv_error(char **argv);
 int	allocation_error(void *ptr);
 int	big_number_error(long long num);
 int	string_error(int argc, char **argv);
+
+/*
+	push_swap_operations.c
+
+	* pa_pb - push for a/b as taks wants
+	* sa_sb_ss - swap_top for a/b/both as task wants
+*/
+void	pa_pb(StackInt *a, StackInt *b, char c);
+void	sa_sb_ss(StackInt *a, StackInt *b, char c);
+void	ra_rb_rr(StackInt *a, StackInt *b, char c);
+void	rra_rrb_rrr(StackInt *a, StackInt *b, char c);
 
 #endif

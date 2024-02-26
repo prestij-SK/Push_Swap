@@ -18,36 +18,58 @@ int	main(int argc, char **argv)
 	// 	++i;
 	// }
 	// start logic
-	StackInt *ptr;
-	ptr = create_stack(nums, size);
-	printf("\n---CREATED---\n");
-	i = 0;
-	while (i < ptr->top + 1)
+	
+	StackInt *a;
+	a = create_stack(nums, size);
+	printf("\n---CREATED A---\n");
+	i = a->top;
+	while (i >= 0)
 	{
-		printf("%d ", ptr->buffer[i]);
-		++i;
+		printf("%d ", a->buffer[i]);
+		--i;
 	}
 
-	printf("\n---PUSHED---\n");
-	push(ptr, 14);
-	i = 0;
-	while (i < ptr->top + 1)
+	StackInt *b;
+	printf("\n---CREATED B empty---\n");
+	b = create_stack_empty(size);
+
+	printf("\n---OPERATIONS---\n");
+	pa_pb(a, b, 'b');
+	pa_pb(a, b, 'b');
+
+	printf("\n---PRINT A---\n");
+	i = a->top;
+	while (i >= 0)
 	{
-		printf("%d ", ptr->buffer[i]);
-		++i;
+		printf("%d ", a->buffer[i]);
+		--i;
+	}
+	printf("\n---PRINT B---\n");
+	i = b->top;
+	while (i >= 0)
+	{
+		printf("%d ", b->buffer[i]);
+		--i;
 	}
 
-	printf("\n---POPED---\n");
-	printf("pop: %d\n", pop(ptr));
-	printf("pop: %d\n", pop(ptr));
-	printf("pop: %d\n", pop(ptr));
-	i = 0;
-	while (i < ptr->top + 1)
+	// printf("\n---ROTATE_UP A---\n");
+	// rotate_up(a);
+	// rotate_up(a);
+
+	// printf("\n---ROTATE_DOWN A---\n");
+	rotate_down(a);
+	// rotate_up(a);
+
+	printf("\n---PRINT A---\n");
+	i = a->top;
+	while (i >= 0)
 	{
-		printf("%d ", ptr->buffer[i]);
-		++i;
+		printf("%d ", a->buffer[i]);
+		--i;
 	}
-	delete_stack(ptr);
+
+	delete_stack(a);
+	delete_stack(b);
 	free(nums);
 	return (0);
 }
