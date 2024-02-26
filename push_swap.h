@@ -23,7 +23,7 @@ char	**ft_split(char const *s, char c);
 
 	* ft_atoll - turns stringo into long long.
 */
-long long	atoll(const char *str);
+long long	ft_atoll(const char *str);
 
 /*
 	converter.c functions

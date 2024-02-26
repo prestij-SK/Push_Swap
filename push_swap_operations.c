@@ -51,14 +51,14 @@ void	ra_rb_rr(StackInt *a, StackInt *b, char c)
 		if (!a)
 			return ;
 		rotate_up(a);
-		printf("ra\n");
+		printf("ra\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
 		if (!b)
 			return ;
 		rotate_up(b);
-		printf("rb\n");
+		printf("rb\n"); // <---------- LIBFT
 	}
 	else if (c == 'r')
 	{
@@ -66,7 +66,7 @@ void	ra_rb_rr(StackInt *a, StackInt *b, char c)
 			return ;
 		rotate_up(a);
 		rotate_up(b);
-		printf("rr\n");
+		printf("rr\n"); // <---------- LIBFT
 	}
 }
 
@@ -77,14 +77,14 @@ void	rra_rrb_rrr(StackInt *a, StackInt *b, char c)
 		if (!a)
 			return ;
 		rotate_down(a);
-		printf("rra\n");
+		printf("rra\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
 		if (!b)
 			return ;
 		rotate_down(b);
-		printf("rrb\n");
+		printf("rrb\n"); // <---------- LIBFT
 	}
 	else if (c == 'r')
 	{
@@ -92,6 +92,6 @@ void	rra_rrb_rrr(StackInt *a, StackInt *b, char c)
 			return ;
 		rotate_down(a);
 		rotate_down(b);
-		printf("rrr\n");
+		printf("rrr\n"); // <---------- LIBFT
 	}
 }

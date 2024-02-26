@@ -27,7 +27,7 @@ typedef struct MyStack
 	* create_stack - creates a stack and fills with given arr, size
 */
 int			pop(StackInt *this);
-void		swap_top(StackInt *s);
+void		swap_top(StackInt *this);
 int			is_full(StackInt *this);
 int			is_empty(StackInt *this);
 void		rotate_up(StackInt *this);

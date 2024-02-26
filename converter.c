@@ -43,7 +43,7 @@ static int	*get_nums(int size, char **mat)
 	i = 0;
 	while (i < size)
 	{
-		num = atoll(mat[i]);
+		num = ft_atoll(mat[i]);
 		if (big_number_error(num))
 		{
 			free(nums);

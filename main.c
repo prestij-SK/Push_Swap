@@ -11,13 +11,13 @@ int	main(int argc, char **argv)
 	nums = get_nums_from_strings(argc, argv, &size);
 	if (!nums)
 		return (0);
+	// start logic
 	int i;
 	// while (i < size)
 	// {
 	// 	printf("%d ", nums[i]);
 	// 	++i;
 	// }
-	// start logic
 	
 	StackInt *a;
 	a = create_stack(nums, size);
@@ -70,6 +70,8 @@ int	main(int argc, char **argv)
 
 	delete_stack(a);
 	delete_stack(b);
+
+	printf("\n\n\n%lld", ft_atoll("000123"));
 	free(nums);
 	return (0);
 }
