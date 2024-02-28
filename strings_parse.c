@@ -36,6 +36,7 @@ char	**parse_strings(int size, char **str_mat)
 
 	if (!str_mat)
 		return (NULL);
+	str_parsed = NULL;
 	i = 1; // avoid program name
 	while (i < size)
 	{

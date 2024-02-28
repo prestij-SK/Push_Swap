@@ -1,22 +1,26 @@
 #include "push_swap.h"
 
-static void	selection_left_to_right(StackInt *left, StackInt *right, int amount)
+void	sort_for_5(StackInt *a, StackInt *b, int *count)
 {
-	if (!left)
+	if (is_empty(a))
 		return ;
-	if (amount == 0)
+	// display_stack(a); // DELETE
+	*count += push_lowest_from_a(a, b);
+	if (stack_is_sorted(a))
+	{
+		*count += push_all_from_b(a, b);
 		return ;
-	
+	}
+	*count += push_lowest_from_a(a, b);
+	sort_for_3(a, b, count);
+	*count += push_all_from_b(a, b);
+	// display_stack(a); // DELETE
+	// display_stack(b); // DELETE
 }
 
-static void	sort_for_5(StackInt *a, StackInt *b, int *counter)
+void	sort_for_3(StackInt *a, StackInt *b, int *count)
 {
-
-}
-
-static void	sort_for_3(StackInt *a, StackInt *b, int *counter)
-{
-	if (!a)
+	if (is_empty(a))
 		return ;
 	if (a->top == 0 || a->top == -1)
 		return ;
@@ -25,48 +29,45 @@ static void	sort_for_3(StackInt *a, StackInt *b, int *counter)
 		if ((a->stack[a->top] > a->stack[a->top - 1]) &&
 			 a->stack[a->top] > a->stack[a->top - 2])
 		{
-			ra_rb_rr(a, b, 'a');
-			++(*counter);
+			*count += ra_rb_rr(a, b, 'a');
 		}
 		else if (a->stack[a->top - 1] > a->stack[a->top - 2])
 		{
-			rra_rrb_rrr(a, b, 'a');
-			++(*counter);
+			*count += rra_rrb_rrr(a, b, 'a');
 		}
 	}
 	if (a->stack[a->top] > a->stack[a->top - 1])
-	{
-		sa_sb_ss(a, b, 'a');
-		++(*counter);
-	}
+		*count += sa_sb_ss(a, b, 'a');
 }
 
 int	stack_sort_moves(int *nums, int size)
 {
 	StackInt	*a;
 	StackInt	*b;
-	int			counter;
+	int			count;
 
 	if (!nums)
 		return (0);
 	a = create_stack(nums, size);
 	b = create_stack_empty(size);
-	counter = 0;
-	if (size <= 3)
-		sort_for_3(a, b, &counter);
-	else if (size <= 5)
+	count = 0;
+	// display_stack(a); // DELETE
+	if (!stack_is_sorted(a))
 	{
-		//
+		if (size <= 3)
+			sort_for_3(a, b, &count);
+		else if (size <= 5)
+			sort_for_5(a, b, &count);
+		else
+		{
+			//
+		}
 	}
-	else
-	{
-		//
-	}
-
-	printf("moves: %d\n", counter); // DELETE
+	printf("\nmoves: %d\n", count); // DELETE
+	printf("\nA empty?: %d\n", is_empty(a)); // DELETE
+	printf("\nB empty?: %d\n", is_empty(b)); // DELETE
 	display_stack(a); // DELETE
-
 	delete_stack(a);
 	delete_stack(b);
-	return (counter);
+	return (count);
 }

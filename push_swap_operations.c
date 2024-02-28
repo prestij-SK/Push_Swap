@@ -1,97 +1,154 @@
 #include "push_swap.h"
+// int	sa(StackInt *a)
+// {
+// 	if (!a)
+// 		return (0);
+// 	swap_top(a);
+// 	printf("sa\n"); // <---------- LIBFT
+// 	return (1);
+// }
 
-void	sa_sb_ss(StackInt *a, StackInt *b, char c)
+// int	sb(StackInt *b)
+// {
+// 	if (!b)
+// 		return (0);
+// 	swap_top(b);
+// 	printf("sb\n"); // <---------- LIBFT
+// 	return (1);
+// }
+
+// int	ss(StackInt *a, StackInt *b)
+// {
+// 	if (!a && !b)
+// 		return (0);
+// 	swap_top(a);
+// 	swap_top(b);
+// 	printf("ss\n"); // <---------- LIBFT
+// 	return (1);
+// }
+
+// int	pa(StackInt *a, StackInt *b)
+// {
+// 	if (!b)
+// 		return (0);
+// 	push(a, pop(b));
+// 	printf("pa\n"); // <---------- LIBFT
+// 	return (1);
+// }
+
+// int	pb(StackInt *a, StackInt *b)
+// {
+// 	if (!a)
+// 		return (0);
+// 	push(b, pop(a));
+// 	printf("pb\n"); // <---------- LIBFT
+// 	return (1);
+// }
+
+int	sa_sb_ss(StackInt *a, StackInt *b, char c)
 {
+	if (c != 'a' && c != 'b' && c != 's')
+		return (0);
 	if (c == 'a')
 	{
-		if (!a)
-			return ;
+		if (is_empty(a))
+			return (0);
 		swap_top(a);
 		printf("sa\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
-		if (!b)
-			return ;
+		if (is_empty(b))
+			return (0);
 		swap_top(b);
 		printf("sb\n"); // <---------- LIBFT
 	}
 	else if (c == 's')
 	{
-		if (!a && !b)
-			return ;
+		if (is_empty(a) && is_empty(b))
+			return (0);
 		swap_top(a);
 		swap_top(b);
 		printf("ss\n"); // <---------- LIBFT
 	}
+	return (1);
 }
 
-void	pa_pb(StackInt *a, StackInt *b, char c)
+int	pa_pb(StackInt *a, StackInt *b, char c)
 {
+	if (c != 'a' && c != 'b')
+		return (0);
 	if (c == 'a')
 	{
-		if (!b)
-			return ;
+		if (is_empty(b))
+			return (0);
 		push(a, pop(b));
 		printf("pa\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
-		if (!a)
-			return ;
+		if (is_empty(a))
+			return (0);
 		push (b, pop(a));
 		printf("pb\n"); // <---------- LIBFT
 	}
+	return (1);
 }
 
-void	ra_rb_rr(StackInt *a, StackInt *b, char c)
+int	ra_rb_rr(StackInt *a, StackInt *b, char c)
 {
+	if (c != 'a' && c != 'b' && c != 'r')
+		return (0);
 	if (c == 'a')
 	{
-		if (!a)
-			return ;
+		if (is_empty(a))
+			return (0);
 		rotate_up(a);
 		printf("ra\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
-		if (!b)
-			return ;
+		if (is_empty(b))
+			return (0);
 		rotate_up(b);
 		printf("rb\n"); // <---------- LIBFT
 	}
 	else if (c == 'r')
 	{
-		if (!a && !b)
-			return ;
+		if (is_empty(a) && is_empty(b))
+			return (0);
 		rotate_up(a);
 		rotate_up(b);
 		printf("rr\n"); // <---------- LIBFT
 	}
+	return (1);
 }
 
-void	rra_rrb_rrr(StackInt *a, StackInt *b, char c)
+int	rra_rrb_rrr(StackInt *a, StackInt *b, char c)
 {
+	if (c != 'a' && c != 'b' && c != 'r')
+		return (0);
 	if (c == 'a')
 	{
-		if (!a)
-			return ;
+		if (is_empty(a))
+			return (0);
 		rotate_down(a);
 		printf("rra\n"); // <---------- LIBFT
 	}
 	else if (c == 'b')
 	{
-		if (!b)
-			return ;
+		if (is_empty(b))
+			return (0);
 		rotate_down(b);
 		printf("rrb\n"); // <---------- LIBFT
 	}
 	else if (c == 'r')
 	{
-		if (!a && !b)
-			return ;
+		if (is_empty(a) && is_empty(b))
+			return (0);
 		rotate_down(a);
 		rotate_down(b);
 		printf("rrr\n"); // <---------- LIBFT
 	}
+	return (1);
 }

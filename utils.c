@@ -21,6 +21,7 @@ void	free_split(char **split)
 
 	if (!split)
 		return ;
+	i = 0;
 	while (split[i])
 	{
 		free(split[i]);
@@ -84,12 +85,12 @@ int	stack_is_sorted(StackInt *s)
 {
 	int	i;
 
-	if (!s)
+	if (is_empty(s))
 		return (0);
 	i = s->top;
 	while (i > 0)
 	{
-		if (s->stack[i] > s->stack[i + 1])
+		if (s->stack[i] > s->stack[i - 1])
 		{
 			return (0);
 		}
@@ -110,4 +111,5 @@ void	display_stack(StackInt *this)
 		printf("[ %d ]\n", this->stack[i]); // <--------------- libft
 		--i;
 	}
+	printf("--------\n"); // <--------------- libft
 }
