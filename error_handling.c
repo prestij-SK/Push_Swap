@@ -1,25 +1,15 @@
 #include "push_swap.h"
 
-int argv_error(char **argv)
-{
-	if (!argv)
-	{
-		printf("Error\n"); // <---------- LIBFT
-		return (1);
-	}
-	return (0);
-}
-
 static int	empty_string_error(char *str)
 {
 	if (!str) // I can make this function one line, but there is a risk to *NULL
 	{
-		printf("Error\n"); // <---------- LIBFT
+		printf("Empty_String_Error\n"); // <---------- LIBFT
 		return (1);
 	}
 	else if (!(*str))
 	{
-		printf("Error\n"); // <---------- LIBFT
+		printf("Empty_String_Error\n"); // <---------- LIBFT
 		return (1);
 	}
 	return (0);
@@ -31,7 +21,7 @@ static int	big_string_error(char *str, size_t str_len)
 	{
 		if (str_len != INT_DIGITS_WITH_SIGN || (*str != '-' && *str != '+'))
 		{
-			printf("Error\n"); // <---------- LIBFT
+			printf("Big_String_Error\n"); // <---------- LIBFT
 			return (1);
 		}
 	}
@@ -46,7 +36,7 @@ static int	string_symbol_error(char *str, size_t str_len)
 	{
 		if (!ft_isdigit(*str))
 		{
-			printf("Error\n"); // <---------- LIBFT
+			printf("String_Symbol_Error\n"); // <---------- LIBFT
 			return (1);
 		}
 		++str;
@@ -54,23 +44,23 @@ static int	string_symbol_error(char *str, size_t str_len)
 	return (0);
 }
 
-int string_error(int argc, char **argv)
+int string_error(char **split)
 {
 	int		i;
 	int		j;
 	size_t	str_len;
 
-	if (!argv)
+	if (!split)
 		return (1);
 	i = 0;
-	while (i < argc)
+	while (split[i])
 	{
-		if (empty_string_error(argv[i]))
+		if (empty_string_error(split[i]))
 			return (1);
-		str_len = ft_strlen(argv[i]);
-		if (big_string_error(argv[i], str_len))
+		str_len = ft_strlen(split[i]);
+		if (big_string_error(split[i], str_len))
 			return (1);
-		if (string_symbol_error(argv[i], str_len))
+		if (string_symbol_error(split[i], str_len))
 			return (1);
 		++i;
 	}
@@ -81,7 +71,7 @@ int allocation_error(void *ptr)
 {
 	if (!ptr)
 	{
-		printf("Error\n"); // <---------- LIBFT
+		printf("Allocation_Error\n"); // <---------- LIBFT
 		return (1);
 	}
 	return (0);
@@ -91,7 +81,7 @@ int big_number_error(long long num)
 {
 	if (num < MIN_INT || num > MAX_INT)
 	{
-		printf("Error\n"); // <---------- LIBFT
+		printf("Big_Number_Error\n"); // <---------- LIBFT
 		return (1);
 	}
 	return (0);

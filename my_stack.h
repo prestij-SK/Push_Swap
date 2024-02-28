@@ -7,7 +7,7 @@
 
 typedef struct MyStack
 {
-	int	*buffer;
+	int	*stack;
 	int	size;
 	int	top;
 }	StackInt;
@@ -16,7 +16,7 @@ typedef struct MyStack
 	stack.c functions
 
 	* pop - takes off and returns the top element
-	* swap_top - swap first and second elements of stack
+	* swap_top - swap top first and second elements of stack
 	* is_full - check if there is space to add element
 	* is_empty - check if stack is empty
 	* rotate_up - shifts elements of the stack UP

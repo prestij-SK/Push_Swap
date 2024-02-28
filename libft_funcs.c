@@ -49,6 +49,8 @@ static char	*get_word(const char *str, char del, size_t *index)
 	while (str[i + *index] && str[i + *index] != del)
 		++i;
 	word = (char *)malloc(sizeof(char) * (i + 1));
+	if (!word)
+		return (NULL);
 	i = 0;
 	while (str[i + *index] && str[i + *index] != del)
 	{
@@ -58,6 +60,24 @@ static char	*get_word(const char *str, char del, size_t *index)
 	*index += i;
 	word[i] = '\0';
 	return (word);
+}
+
+static void	ft_free_split(char **mat)
+{
+	int	i;
+
+	if (!mat)
+		return ;
+	while (mat[i])
+	{
+		free(mat[i]);
+		mat[i] = NULL;
+		++i;
+	}
+	free(mat[i]);
+	mat[i] = NULL;
+	free(mat);
+	mat = NULL;
 }
 
 char	**ft_split(char const *s, char c)
@@ -71,13 +91,18 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	word_count = word_counter(s, c);
 	mat = (char **)malloc(sizeof(char *) * (word_count + 1));
-	if (!mat)
+	if (allocation_error(mat)) // <------------ change for LIBFT
 		return (NULL);
 	i = 0;
 	word_i = 0;
 	while (word_i < word_count)
 	{
 		mat[word_i] = get_word(s, c, &i);
+		if (!mat[word_i])
+		{
+			free_split(mat);
+			return (NULL);
+		}
 		++word_i;
 	}
 	mat[word_i] = NULL;

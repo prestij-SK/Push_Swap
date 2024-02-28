@@ -1,46 +1,47 @@
 #include "push_swap.h"
 
-static int	stack_is_sorted(StackInt *s)
+static void	selection_left_to_right(StackInt *left, StackInt *right, int amount)
 {
-	int	i;
+	if (!left)
+		return ;
+	if (amount == 0)
+		return ;
+	
+}
 
-	if (!s)
-		return (0);
-	i = s->top;
-	while (i > 0)
-	{
-		if (s->buffer[i] > s->buffer[i + 1])
-		{
-			return (0);
-		}
-		--i;
-	}
-	return (1);
+static void	sort_for_5(StackInt *a, StackInt *b, int *counter)
+{
+
 }
 
 static void	sort_for_3(StackInt *a, StackInt *b, int *counter)
 {
-	if (!a || !b)
+	if (!a)
 		return ;
 	if (a->top == 0 || a->top == -1)
 		return ;
-	if (a->top == 1)
+	if (a->top == 2)
 	{
-		if (a->buffer[a->top] > a->buffer[a->top - 1])
+		if ((a->stack[a->top] > a->stack[a->top - 1]) &&
+			 a->stack[a->top] > a->stack[a->top - 2])
 		{
-			sa_sb_ss(a, b, 'a');
+			ra_rb_rr(a, b, 'a');
 			++(*counter);
-			return ;
+		}
+		else if (a->stack[a->top - 1] > a->stack[a->top - 2])
+		{
+			rra_rrb_rrr(a, b, 'a');
+			++(*counter);
 		}
 	}
-	if (a->buffer[a->top] > a->buffer[a->top - 1])
+	if (a->stack[a->top] > a->stack[a->top - 1])
 	{
-		ss_sb_ss(a, b, 'a');
+		sa_sb_ss(a, b, 'a');
 		++(*counter);
 	}
 }
 
-int	sort_as_stack(int *nums, int size)
+int	stack_sort_moves(int *nums, int size)
 {
 	StackInt	*a;
 	StackInt	*b;
@@ -52,9 +53,7 @@ int	sort_as_stack(int *nums, int size)
 	b = create_stack_empty(size);
 	counter = 0;
 	if (size <= 3)
-	{
-		//
-	}
+		sort_for_3(a, b, &counter);
 	else if (size <= 5)
 	{
 		//
@@ -63,6 +62,10 @@ int	sort_as_stack(int *nums, int size)
 	{
 		//
 	}
+
+	printf("moves: %d\n", counter); // DELETE
+	display_stack(a); // DELETE
+
 	delete_stack(a);
 	delete_stack(b);
 	return (counter);

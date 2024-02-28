@@ -10,8 +10,8 @@ StackInt	*create_stack(int *arr, int size)
 	stack_new = (StackInt *)malloc(sizeof(StackInt));
 	if (!stack_new)
 		return (NULL);
-	stack_new->buffer = (int *)malloc(sizeof(int) * size);
-	if (!stack_new->buffer)
+	stack_new->stack = (int *)malloc(sizeof(int) * size);
+	if (!stack_new->stack)
 	{
 		free(stack_new);
 		return (NULL);
@@ -36,8 +36,8 @@ StackInt	*create_stack_empty(int size)
 	stack_new = (StackInt *)malloc(sizeof(StackInt));
 	if (!stack_new)
 		return (NULL);
-	stack_new->buffer = (int *)malloc(sizeof(int) * size);
-	if (!stack_new->buffer)
+	stack_new->stack = (int *)malloc(sizeof(int) * size);
+	if (!stack_new->stack)
 	{
 		free(stack_new);
 		return (NULL);
@@ -51,8 +51,8 @@ void	delete_stack(StackInt *this)
 {
 	if (!this)
 		return ;
-	free(this->buffer);
-	this->buffer = NULL;
+	free(this->stack);
+	this->stack = NULL;
 	this->size = 0;
 	this->top = -1;
 	free(this);
@@ -84,7 +84,7 @@ static int	has_space(StackInt *this, int data)
 	if (this->top + 1 < this->size)
 	{
 		++(this->top);
-		this->buffer[this->top] = data;
+		this->stack[this->top] = data;
 		return (1);
 	}
 	return (0);
@@ -107,12 +107,12 @@ void	push(StackInt *this, int data)
 	i = 0;
 	while (i < this->size)
 	{
-		temp[i] = this->buffer[i];
+		temp[i] = this->stack[i];
 		++i;
 	}
 	temp[i] = data;
-	free(this->buffer);
-	this->buffer = temp;
+	free(this->stack);
+	this->stack = temp;
 	this->size = this->size * SIZE_MULTIPLIER;
 	++(this->top);
 }
@@ -124,7 +124,7 @@ int	pop(StackInt *this)
 	if (is_empty(this))
 		return (-1);
 	--(this->top);
-	return (this->buffer[this->top + 1]);
+	return (this->stack[this->top + 1]);
 }
 
 void	swap_top(StackInt *this)
@@ -135,9 +135,9 @@ void	swap_top(StackInt *this)
 		return ;
 	if (this->top == 0)
 		return ;
-	temp = this->buffer[this->top];
-	this->buffer[this->top] = this->buffer[this->top - 1];
-	this->buffer[this->top - 1] = temp;
+	temp = this->stack[this->top];
+	this->stack[this->top] = this->stack[this->top - 1];
+	this->stack[this->top - 1] = temp;
 }
 
 void	rotate_up(StackInt *this)
@@ -149,14 +149,14 @@ void	rotate_up(StackInt *this)
 		return ;
 	if (this->top == 0)
 		return ;
-	temp = this->buffer[this->top];
+	temp = this->stack[this->top];
 	i = this->top;
 	while (i >= 1)
 	{
-		this->buffer[i] = this->buffer[i - 1];
+		this->stack[i] = this->stack[i - 1];
 		--i;
 	}
-	this->buffer[i] = temp;
+	this->stack[i] = temp;
 }
 
 void	rotate_down(StackInt *this)
@@ -168,12 +168,12 @@ void	rotate_down(StackInt *this)
 		return ;
 	if (this->top == 0)
 		return ;
-	temp = this->buffer[0];
+	temp = this->stack[0];
 	i = 0;
 	while (i < this->top)
 	{
-		this->buffer[i] = this->buffer[i + 1];
+		this->stack[i] = this->stack[i + 1];
 		++i;
 	}
-	this->buffer[i] = temp;
+	this->stack[i] = temp;
 }
