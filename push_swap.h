@@ -59,6 +59,7 @@ char	**parse_strings(int size, char **str_mat);
 /*
 	utils.c functions
 
+	* ft_sqrt - returns root of number
 	* ft_is_space - check if given character is space.
 	* split_size - returns the size of split matrix.
 	* free_split - free matrix which was created by split().
@@ -67,6 +68,7 @@ char	**parse_strings(int size, char **str_mat);
 	* display_stack - display stack elements.
 	* copy_split - copies from src split to dest split and returns the count of copies.
 */
+int			ft_sqrt(int nb);
 int			ft_is_space(char c);
 int			split_size(char **split);
 void		free_split(char **split);
@@ -93,8 +95,15 @@ int	stack_selection_sort(StackInt *a, StackInt *b);
 	* sort_for_3 - simple sort for 3 numbers
 	* sort_for_5 - simple sort for 5 numbers. Has Selection sort logic.
 */
-int		stack_sort_moves(int *nums, int size);
-void	sort_for_3(StackInt *a, StackInt *b, int *count);
-void	sort_for_5(StackInt *a, StackInt *b, int *count);
+int	stack_sort_moves(int *nums, int size);
+int	sort_for_3(StackInt *a, StackInt *b);
+int	sort_for_5(StackInt *a, StackInt *b);
+
+/*
+	stack_monarch_sort.c functions
+
+	* stack_monarch_sort - sorts the stack with the logic of 'butterfly sort'. Returns number of moves.
+*/
+int	stack_monarch_sort(StackInt *a, StackInt *b);
 
 #endif

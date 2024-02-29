@@ -20,16 +20,19 @@ static int	find_lowest(StackInt *s)
 	return (index);
 }
 
-static void	make_top(StackInt *a, StackInt *b, int index, int *count)
+static int	make_top(StackInt *a, StackInt *b, int index)
 {
+	int	count;
+
 	if (is_empty(a))
-		return ;
+		return (0);
+	count = 0;
 	if (index >= (a->top + 1) / 2)
 	{
 		index = a->top - index;
 		while (index)
 		{
-			*count += ra_rb_rr(a, b, 'a');
+			count += ra_rb_rr(a, b, 'a');
 			--index;
 		}
 	}
@@ -37,11 +40,12 @@ static void	make_top(StackInt *a, StackInt *b, int index, int *count)
 	{
 		while (index)
 		{
-			*count += rra_rrb_rrr(a, b, 'a');
+			count += rra_rrb_rrr(a, b, 'a');
 			--index;
 		}
-		*count += rra_rrb_rrr(a, b, 'a');
+		count += rra_rrb_rrr(a, b, 'a');
 	}
+	return (count);
 }
 
 int	push_lowest_from_a(StackInt *a, StackInt *b)
@@ -56,7 +60,7 @@ int	push_lowest_from_a(StackInt *a, StackInt *b)
 	i = find_lowest(a);
 	if (i == -1)
 		return (0);
-	make_top(a, b, i, &count);
+	count += make_top(a, b, i);
 	count += pa_pb(a, b, 'b');
 	return (count);
 }
@@ -86,7 +90,7 @@ int	stack_selection_sort(StackInt *a, StackInt *b)
 	{
 		count += push_lowest_from_a(a, b);
 	}
-	sort_for_3(a, b, &count);
+	count += sort_for_3(a, b);
 	count += push_all_from_b(a, b);
 	return (count);
 }
