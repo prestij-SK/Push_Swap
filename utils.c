@@ -114,22 +114,43 @@ void	display_stack(StackInt *this)
 	printf("--------\n"); // <--------------- libft
 }
 
-// Bad optimized, sorry
-int		ft_sqrt(int nb)
+int	ft_log2(unsigned int n)
 {
-	int	n;
+    int	result;
 
-	n = 1;
-	if (nb > 0)
+	result = -1;
+    while (n) {
+        n >>= 1;
+        result++;
+    }
+    return (result);
+}
+
+int	ft_sqrt(int n)
+{
+	int	start;
+	int	mid;
+	int	end;
+	int	ans;
+
+	if (n < 0)
+		return (-1);
+    if (n <= 1)
+        return (n);
+    start = 1;
+	end = n;
+    while (start <= end)
 	{
-		while (n * n <= nb)
+        mid = (start + end) / 2;
+        if (mid * mid == n)
+            return (mid);
+        if (mid * mid < n)
 		{
-			if (n * n == nb)
-				return (n);
-			else if (n >= 46341)
-				return (0);
-			n++;
-		}
-	}
-	return (n);
+            start = mid + 1;
+            ans = mid;
+        }
+		else
+            end = mid - 1;
+    }
+    return (ans);
 }

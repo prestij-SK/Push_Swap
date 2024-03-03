@@ -46,33 +46,138 @@ static int	*sorted_array_from_stack(StackInt *s)
 	return (arr);
 }
 
-static int	hit_or_miss(int num, int *arr, int size, int interval, int index)
+static int	push_lowest_from_a_monarch(StackInt *a, StackInt *b, int *arr, int index, int interval)
 {
 	int	count;
+	int	stack_top;
 
-	if (!arr)
+	if (is_empty(a))
 		return (0);
 	count = 0;
-	// if (num <= arr[])
-	return (0);
+	while (1)
+	{
+		if (a->stack[a->top] <= arr[index])
+		{
+			count += pb(a, b);
+			count += rb(b);
+			return (count);
+		}
+		else if (a->stack[a->top] <= arr[index + interval])
+		{
+			count += pb(a, b);
+			return (count);
+		}
+		else
+		{
+			count += ra(a);
+		}
+	}
+	return (count);
 }
 
-static int	push_lowest_from_A_by_array(StackInt *a, StackInt *b, int *arr, int size)
+static int	find_highest(StackInt *s)
+{
+	int	index;
+	int	i;
+
+	if (is_empty(s))
+		return (-1);
+	index = s->top;
+	i = 0;
+	while (i < s->top)
+	{
+		if (s->stack[index] < s->stack[i])
+		{
+			index = i;
+		}
+		++i;
+	}
+	return (index);
+}
+
+static int	make_top_for_b(StackInt *b, int index)
 {
 	int	count;
-	int	interval;
+
+	if (is_empty(b))
+		return (0);
+	count = 0;
+	if (index == b->top)
+		return (0);
+	if (index >= (b->top + 1) / 2)
+	{
+		index = b->top - index;
+		while (index)
+		{
+			count += rb(b);
+			--index;
+		}
+	}
+	else
+	{
+		while (index)
+		{
+			count += rrb(b);
+			--index;
+		}
+		count += rrb(b);
+	}
+	return (count);
+}
+
+static int	push_highest_from_b_monarch(StackInt *a, StackInt *b)
+{
+	int	i;
+	int	temp;
+	int	count;
+
+	if (is_empty(b))
+		return (0);
+	count = 0;
+	i = find_highest(b);
+	// printf("i: %d\n", i);
+	if (i == -1)
+		return (0);
+	count += make_top_for_b(b, i);
+	count += pa(a, b);
+	return (count);
+}
+
+static int	monarch_sort_start(StackInt *a, StackInt *b, int *arr, int size, int interval)
+{
+	int	count;
 	int	i;
 
 	if (is_empty(a))
 		return (0);
 	count = 0;
-	interval = ft_sqrt(a->top + 1);
-	i = a->top;
-	while (a->top + 1)
+	i = 0;
+	while (!is_empty(a))
 	{
-
+		// if (!is_empty(b))
+		// {
+		// 	if ((a->stack[a->top] >= b->stack[b->top]) && (a->stack[a->top] >= b->stack[0]))
+		// 	{
+		// 		if (stack_is_sorted(a))
+		// 			break ;
+		// 	}
+		// }
+		if (interval + i >= size)
+			--interval;
+		count += push_lowest_from_a_monarch(a, b, arr, i, interval);
+		// interval = ft_sqrt(size) + ft_log2(size); ................ DO WE NEED TO DO THIS ?
+		++i;
 	}
-	return (0);
+	// count += sort_for_5(a, b);
+	// printf("\n===A===\n");
+	// display_stack(a);
+	// printf("\n===B===\n");
+	// display_stack(b);
+	while (!is_empty(b))
+	{
+		count += push_highest_from_b_monarch(a, b);
+	}
+	return (count);
 }
 
 int	stack_monarch_sort(StackInt *a, StackInt *b)
@@ -80,22 +185,26 @@ int	stack_monarch_sort(StackInt *a, StackInt *b)
 	int	count;
 	int	*sorted_arr;
 	int	sorted_arr_size;
+	int	interval;
 
 	if (is_empty(a))
 		return (0);
 	sorted_arr = sorted_array_from_stack(a);
 	if (!sorted_arr)
 		return (0);
+	sorted_arr_size = a->top + 1;
+	interval = ft_sqrt(sorted_arr_size) + ft_log2(sorted_arr_size);
 	count = 0;
-	// int i = 0;
-	// while (i < a->top + 1)
-	// {
-	// 	printf("%d ", sorted_arr[i]);
-	// 	++i;
-	// }
-	count += push_lowest_from_A_by_array(a, b, sorted_arr, sorted_arr_size);
-	count += sort_for_3(a, b);
-	// push highest from B
+	count += monarch_sort_start(a, b, sorted_arr, sorted_arr_size, interval);
+	// printf("\ninterval: %d\n", interval);
+	// printf("\n===A===\n");
+	// display_stack(a);
+	// printf("\n===B===\n");
+	// display_stack(b);
+	// if (stack_is_sorted(a))
+	// 	printf("\nSORTED !\n");
+	// else
+	// 	printf("\nabuba moment....\n");
 	free(sorted_arr);
 	return (count);
 }

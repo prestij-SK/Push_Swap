@@ -39,15 +39,48 @@ int	big_number_error(long long num);
 /*
 	push_swap_operations.c
 
-	* pa_pb - push for a/b as taks wants, returns 1 if operation is done.
-	* sa_sb_ss - swap_top for a/b/both, returns 1 if operation is done.
-	* ra_rb_rr - rotates to up the stack for a/b/both, returns 1 if operation is done.
-	* rra_rrb_rrr - rotates to down the stack for a/b/both, returns 1 if operation is done.
+	sa (swap a): Swap the first 2 elements at the top of stack a.
+		Do nothing if there is only one or no elements.
+
+	sb (swap b): Swap the first 2 elements at the top of stack b.
+		Do nothing if there is only one or no elements.
+
+	ss : sa and sb at the same time.
+
+	pa (push a): Take the first element at the top of b and put it at the top of a.
+		Do nothing if b is empty.
+
+	pb (push b): Take the first element at the top of a and put it at the top of b.
+		Do nothing if a is empty.
+
+	ra (rotate a): Shift up all elements of stack a by 1.
+		The first element becomes the last one.
+
+	rb (rotate b): Shift up all elements of stack b by 1.
+		The first element becomes the last one.
+
+	rr : ra and rb at the same time.
+
+	rra (reverse rotate a): Shift down all elements of stack a by 1.
+		The last element becomes the first one.
+
+	rrb (reverse rotate b): Shift down all elements of stack b by 1.
+		The last element becomes the first one.
+
+	rrr : rra and rrb at the same time.
+
 */
-int	pa_pb(StackInt *a, StackInt *b, char c);
-int	sa_sb_ss(StackInt *a, StackInt *b, char c);
-int	ra_rb_rr(StackInt *a, StackInt *b, char c);
-int	rra_rrb_rrr(StackInt *a, StackInt *b, char c);
+int	sa(StackInt *a);
+int	sb(StackInt *b);
+int	ss(StackInt *a, StackInt *b);
+int	ra(StackInt *a);
+int	rb(StackInt *b);
+int	rr(StackInt *a, StackInt *b);
+int	rra(StackInt *a);
+int	rrb(StackInt *b);
+int	rrr(StackInt *a, StackInt *b);
+int	pa(StackInt *a, StackInt *b);
+int	pb(StackInt *a, StackInt *b);
 
 /*
 	string_parse.c functions
@@ -59,8 +92,9 @@ char	**parse_strings(int size, char **str_mat);
 /*
 	utils.c functions
 
-	* ft_sqrt - returns root of number
+	* ft_sqrt - returns root of number.
 	* ft_is_space - check if given character is space.
+	* ft_log2 - returns log base 2 for given number.
 	* split_size - returns the size of split matrix.
 	* free_split - free matrix which was created by split().
 	* ft_atoll - turns stringo into long long.
@@ -68,8 +102,9 @@ char	**parse_strings(int size, char **str_mat);
 	* display_stack - display stack elements.
 	* copy_split - copies from src split to dest split and returns the count of copies.
 */
-int			ft_sqrt(int nb);
+int			ft_sqrt(int n);
 int			ft_is_space(char c);
+int			ft_log2(unsigned int n);
 int			split_size(char **split);
 void		free_split(char **split);
 long long	ft_atoll(const char *str);
@@ -80,12 +115,12 @@ int			copy_split(char **dest, char **src);
 /*
 	stack_selection_sort.c functions
 
-	* push_all_from_b - push all from stack B to A. Returns number of moves.
-	* push_lowest_from_a - pushs one lowest element from stack A to B. Returns number of moves.
+	* push_all_from_b_selection - push all from stack B to A. Returns number of moves.
+	* push_lowest_from_A_selection - pushs one lowest element from stack A to B. Returns number of moves.
 	* stack_selection_sort - sorts stack A with use of B by logic of Selection sort. Returns number of moves.
 */
-int	push_all_from_b(StackInt *a, StackInt *b);
-int	push_lowest_from_a(StackInt *a, StackInt *b);
+int	push_top_from_b_selection(StackInt *a, StackInt *b);
+int	push_lowest_from_a_selection(StackInt *a, StackInt *b);
 int	stack_selection_sort(StackInt *a, StackInt *b);
 
 /*
