@@ -86,3 +86,26 @@ int big_number_error(long long num)
 	}
 	return (0);
 }
+
+int	duplicates_error(int *arr, int size)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < size)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (arr[i] == arr[j])
+			{
+				printf("Duplicates_Error\n"); // <---------- LIBFT
+				return (1);
+			}
+			++j;
+		}
+		++i;
+	}
+    return (0);
+}

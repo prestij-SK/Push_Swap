@@ -31,10 +31,12 @@ int	*get_nums_from_strings(char **str_mat);
 	* string_error - error if the string does not match the rules.
 	* allocation_error - error if malloc() failed.
 	* big_number_error - error if number result is bigger/lower MAX_INT/MIN_INT.
+	* duplicates_error - error if there are any duplicates in the array.
 */
 int	string_error(char **split);
 int	allocation_error(void *ptr);
 int	big_number_error(long long num);
+int	duplicates_error(int *arr, int size);
 
 /*
 	push_swap_operations.c
