@@ -47,7 +47,6 @@ static int	string_symbol_error(char *str, size_t str_len)
 int string_error(char **split)
 {
 	int		i;
-	int		j;
 	size_t	str_len;
 
 	if (!split)

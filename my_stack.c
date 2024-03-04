@@ -177,3 +177,36 @@ void	rotate_down(StackInt *this)
 	}
 	this->stack[i] = temp;
 }
+
+int	stack_is_sorted(StackInt *s)
+{
+	int	i;
+
+	if (is_empty(s))
+		return (0);
+	i = s->top;
+	while (i > 0)
+	{
+		if (s->stack[i] > s->stack[i - 1])
+		{
+			return (0);
+		}
+		--i;
+	}
+	return (1);
+}
+
+void	display_stack(StackInt *this)
+{
+	int	i;
+
+	if (!this)
+		return ;
+	i = this->top;
+	while (i >= 0)
+	{
+		printf("[ %d ]\n", this->stack[i]); // <--------------- libft
+		--i;
+	}
+	printf("--------\n"); // <--------------- libft
+}

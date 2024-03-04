@@ -16,14 +16,9 @@
 */
 int		ft_isdigit(int c);
 size_t	ft_strlen(const char *s);
+void	ft_free_split(char **mat);
 char	**ft_split(char const *s, char c);
-
-/*
-	converter.c functions
-
-	* get_nums_from_strings - get nums of matrix from strings.
-*/
-int	*get_nums_from_strings(char **str_mat);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /*
 	error_handling.c functions
@@ -85,10 +80,12 @@ int	pa(StackInt *a, StackInt *b);
 int	pb(StackInt *a, StackInt *b);
 
 /*
-	string_parse.c functions
+	strings_to_ints.c functions
 
+	* get_nums_from_strings - get nums of matrix from strings.
 	* parse_strings - returns the result of parsing all strings in the matrix of strings.
 */
+int		*get_nums_from_strings(char **str_mat);
 char	**parse_strings(int size, char **str_mat);
 
 /*
@@ -100,19 +97,12 @@ char	**parse_strings(int size, char **str_mat);
 	* split_size - returns the size of split matrix.
 	* free_split - free matrix which was created by split().
 	* ft_atoll - turns stringo into long long.
-	* stack_is_sorted - returns true if stack is sorted.
-	* display_stack - display stack elements.
-	* copy_split - copies from src split to dest split and returns the count of copies.
 */
 int			ft_sqrt(int n);
 int			ft_is_space(char c);
 int			ft_log2(unsigned int n);
 int			split_size(char **split);
-void		free_split(char **split);
 long long	ft_atoll(const char *str);
-int			stack_is_sorted(StackInt *s);
-void		display_stack(StackInt *this);
-int			copy_split(char **dest, char **src);
 
 /*
 	stack_selection_sort.c functions
@@ -133,7 +123,7 @@ int	stack_selection_sort(StackInt *a, StackInt *b);
 	* sort_for_5 - simple sort for 5 numbers. Has Selection sort logic.
 */
 int	stack_sort_moves(int *nums, int size);
-int	sort_for_3(StackInt *a, StackInt *b);
+int	sort_for_3(StackInt *a);
 int	sort_for_5(StackInt *a, StackInt *b);
 
 /*

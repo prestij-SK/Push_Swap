@@ -1,39 +1,5 @@
 #include "push_swap.h"
 
-int	copy_split(char **dest, char **src)
-{
-	int	i;
-
-	if (!dest || !src)
-		return (0);
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		++i;
-	}
-	return (i);
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		split[i] = NULL;
-		++i;
-	}
-	free(split[i]);
-	split[i] = NULL;
-	free(split);
-	split = NULL;
-}
-
 int	split_size(char **split)
 {
 	int	i;
@@ -79,39 +45,6 @@ long long	ft_atoll(const char *str)
 	if (isneg)
 		return (-nbr);
 	return (nbr);
-}
-
-int	stack_is_sorted(StackInt *s)
-{
-	int	i;
-
-	if (is_empty(s))
-		return (0);
-	i = s->top;
-	while (i > 0)
-	{
-		if (s->stack[i] > s->stack[i - 1])
-		{
-			return (0);
-		}
-		--i;
-	}
-	return (1);
-}
-
-void	display_stack(StackInt *this)
-{
-	int	i;
-
-	if (!this)
-		return ;
-	i = this->top;
-	while (i >= 0)
-	{
-		printf("[ %d ]\n", this->stack[i]); // <--------------- libft
-		--i;
-	}
-	printf("--------\n"); // <--------------- libft
 }
 
 int	ft_log2(unsigned int n)

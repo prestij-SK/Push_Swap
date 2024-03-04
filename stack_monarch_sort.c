@@ -49,7 +49,6 @@ static int	*sorted_array_from_stack(StackInt *s)
 static int	push_lowest_from_a_monarch(StackInt *a, StackInt *b, int *arr, int index, int interval)
 {
 	int	count;
-	int	stack_top;
 
 	if (is_empty(a))
 		return (0);
@@ -128,7 +127,6 @@ static int	make_top_for_b(StackInt *b, int index)
 static int	push_highest_from_b_monarch(StackInt *a, StackInt *b)
 {
 	int	i;
-	int	temp;
 	int	count;
 
 	if (is_empty(b))

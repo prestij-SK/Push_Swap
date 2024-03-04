@@ -53,7 +53,6 @@ static int	make_top_for_a(StackInt *a, int index)
 int	push_lowest_from_a_selection(StackInt *a, StackInt *b)
 {
 	int	i;
-	int	temp;
 	int	count;
 
 	if (is_empty(a))

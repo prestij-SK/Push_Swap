@@ -17,7 +17,7 @@ int	sort_for_5(StackInt *a, StackInt *b)
 		return (count);
 	}
 	count += push_lowest_from_a_selection(a, b);
-	count += sort_for_3(a, b);
+	count += sort_for_3(a);
 	count += push_top_from_b_selection(a, b);
 	count += push_top_from_b_selection(a, b);
 	// display_stack(a); // DELETE
@@ -25,7 +25,7 @@ int	sort_for_5(StackInt *a, StackInt *b)
 	return (count);
 }
 
-int	sort_for_3(StackInt *a, StackInt *b)
+int	sort_for_3(StackInt *a)
 {
 	int	count;
 
@@ -66,7 +66,7 @@ int	stack_sort_moves(int *nums, int size)
 	if (!stack_is_sorted(a))
 	{
 		if (size <= 3)
-			count += sort_for_3(a, b);
+			count += sort_for_3(a);
 		else if (size <= 5)
 			count += sort_for_5(a, b);
 		else
