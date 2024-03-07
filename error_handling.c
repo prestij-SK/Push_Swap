@@ -4,12 +4,12 @@ static int	empty_string_error(char *str)
 {
 	if (!str) // I can make this function one line, but there is a risk to *NULL
 	{
-		printf("Empty_String_Error\n"); // <---------- LIBFT
+		write(WRITE_ERROR_DESCRIPTOR, "Empty_String_Error\n", 19);
 		return (1);
 	}
 	else if (!(*str))
 	{
-		printf("Empty_String_Error\n"); // <---------- LIBFT
+		write(WRITE_ERROR_DESCRIPTOR, "Empty_String_Error\n", 19);
 		return (1);
 	}
 	return (0);
@@ -21,7 +21,8 @@ static int	big_string_error(char *str, size_t str_len)
 	{
 		if (str_len != INT_DIGITS_WITH_SIGN || (*str != '-' && *str != '+'))
 		{
-			printf("Big_String_Error\n"); // <---------- LIBFT
+			
+			write(WRITE_ERROR_DESCRIPTOR, "Big_String_Error\n", 17);
 			return (1);
 		}
 	}
@@ -36,7 +37,7 @@ static int	string_symbol_error(char *str, size_t str_len)
 	{
 		if (!ft_isdigit(*str))
 		{
-			printf("String_Symbol_Error\n"); // <---------- LIBFT
+			write(WRITE_ERROR_DESCRIPTOR, "String_Symbol_Error\n", 20);
 			return (1);
 		}
 		++str;
@@ -70,7 +71,7 @@ int allocation_error(void *ptr)
 {
 	if (!ptr)
 	{
-		printf("Allocation_Error\n"); // <---------- LIBFT
+		write(WRITE_ERROR_DESCRIPTOR, "Allocation_Error\n", 17);
 		return (1);
 	}
 	return (0);
@@ -80,7 +81,7 @@ int big_number_error(long long num)
 {
 	if (num < MIN_INT || num > MAX_INT)
 	{
-		printf("Big_Number_Error\n"); // <---------- LIBFT
+		write(WRITE_ERROR_DESCRIPTOR, "Big_Number_Error\n", 17);
 		return (1);
 	}
 	return (0);
@@ -99,7 +100,7 @@ int	duplicates_error(int *arr, int size)
 		{
 			if (arr[i] == arr[j])
 			{
-				printf("Duplicates_Error\n"); // <---------- LIBFT
+				write(WRITE_ERROR_DESCRIPTOR, "Duplicates_Error\n", 17);
 				return (1);
 			}
 			++j;

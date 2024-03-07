@@ -133,7 +133,6 @@ static int	push_highest_from_b_monarch(StackInt *a, StackInt *b)
 		return (0);
 	count = 0;
 	i = find_highest(b);
-	// printf("i: %d\n", i);
 	if (i == -1)
 		return (0);
 	count += make_top_for_b(b, i);
@@ -152,25 +151,12 @@ static int	monarch_sort_start(StackInt *a, StackInt *b, int *arr, int size, int 
 	i = 0;
 	while (!is_empty(a))
 	{
-		// if (!is_empty(b))
-		// {
-		// 	if ((a->stack[a->top] >= b->stack[b->top]) && (a->stack[a->top] >= b->stack[0]))
-		// 	{
-		// 		if (stack_is_sorted(a))
-		// 			break ;
-		// 	}
-		// }
 		if (interval + i >= size)
 			--interval;
 		count += push_lowest_from_a_monarch(a, b, arr, i, interval);
-		// interval = ft_sqrt(size) + ft_log2(size); ................ DO WE NEED TO DO THIS ?
+		// interval = ft_sqrt(size) + ft_log2(size); this can optimized, but very little
 		++i;
 	}
-	// count += sort_for_5(a, b);
-	// printf("\n===A===\n");
-	// display_stack(a);
-	// printf("\n===B===\n");
-	// display_stack(b);
 	while (!is_empty(b))
 	{
 		count += push_highest_from_b_monarch(a, b);
@@ -194,15 +180,6 @@ int	stack_monarch_sort(StackInt *a, StackInt *b)
 	interval = ft_sqrt(sorted_arr_size) + ft_log2(sorted_arr_size);
 	count = 0;
 	count += monarch_sort_start(a, b, sorted_arr, sorted_arr_size, interval);
-	// printf("\ninterval: %d\n", interval);
-	// printf("\n===A===\n");
-	// display_stack(a);
-	// printf("\n===B===\n");
-	// display_stack(b);
-	// if (stack_is_sorted(a))
-	// 	printf("\nSORTED !\n");
-	// else
-	// 	printf("\nabuba moment....\n");
 	free(sorted_arr);
 	return (count);
 }

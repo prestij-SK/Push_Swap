@@ -93,6 +93,5 @@ int	stack_selection_sort(StackInt *a, StackInt *b)
 	{
 		count += push_top_from_b_selection(a, b);
 	}
-	
 	return (count);
 }

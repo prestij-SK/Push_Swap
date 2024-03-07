@@ -2,7 +2,7 @@
 # define PUSH_SWAP_H
 
 #include <stdlib.h>
-#include <stdio.h> // DELETE
+#include <unistd.h>
 
 #include "my_stack.h"
 
@@ -10,6 +10,9 @@
 # define INT_DIGITS_WITH_SIGN 11
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define EXIT_ERROR_STATUS 1
+# define WRITE_ERROR_DESCRIPTOR 2
+# define WRTIE_OUTPUT_DESCRIPTOR 1
 
 /*
 	Libft functions
@@ -96,7 +99,7 @@ char	**parse_strings(int size, char **str_mat);
 	* ft_log2 - returns log base 2 for given number.
 	* split_size - returns the size of split matrix.
 	* free_split - free matrix which was created by split().
-	* ft_atoll - turns stringo into long long.
+	* ft_atoll - turns string into long long.
 */
 int			ft_sqrt(int n);
 int			ft_is_space(char c);

@@ -2,7 +2,7 @@
 # define MY_STACK_H
 
 # include <stdlib.h>
-# include <stdio.h> // DELETE
+# include <stdio.h>
 
 # define SIZE_MULTIPLIER 2
 
@@ -25,7 +25,7 @@ typedef struct MyStack
 	* rotate_up - shifts elements of the stack UP.
 	* rotate_down - shifts elements of the stack DOWN.
 	* delete_stack - deletes a stack by free() and makes fields to NULL.
-	* display_stack - display stack elements.
+	* display_stack - display the stack.
 	* push - push data to the top of the stack.
 
 	* create_stack_empty - creates an empty stack and sets size.

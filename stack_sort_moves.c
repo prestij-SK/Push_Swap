@@ -6,7 +6,6 @@ int	sort_for_5(StackInt *a, StackInt *b)
 
 	if (is_empty(a))
 		return (0);
-	// display_stack(a); // DELETE
 	if (stack_is_sorted(a))
 		return (0);
 	count = 0;
@@ -20,8 +19,6 @@ int	sort_for_5(StackInt *a, StackInt *b)
 	count += sort_for_3(a);
 	count += push_top_from_b_selection(a, b);
 	count += push_top_from_b_selection(a, b);
-	// display_stack(a); // DELETE
-	// display_stack(b); // DELETE
 	return (count);
 }
 
@@ -61,8 +58,8 @@ int	stack_sort_moves(int *nums, int size)
 		return (0);
 	a = create_stack(nums, size);
 	b = create_stack_empty(size);
+	// display_stack(a);
 	count = 0;
-	// display_stack(a); // DELETE
 	if (!stack_is_sorted(a))
 	{
 		if (size <= 3)
@@ -73,10 +70,15 @@ int	stack_sort_moves(int *nums, int size)
 			count += stack_monarch_sort(a, b);
 			// count += stack_selection_sort(a, b);
 	}
-	// printf("\nmoves: %d\n", count); // DELETE
-	// printf("\nA empty?: %d\n", is_empty(a)); // DELETE
-	// printf("\nB empty?: %d\n", is_empty(b)); // DELETE
-	// display_stack(a); // DELETE
+	// printf("\nmoves: %d\n", count);
+	// printf("\n===A===\n");
+	// display_stack(a);
+	// printf("\n===B===\n");
+	// display_stack(b);
+	// if (stack_is_sorted(a))
+	// 	printf("\nSORTED !\n");
+	// else
+	// 	printf("\nabuba moment....\n");
 	delete_stack(a);
 	delete_stack(b);
 	return (count);
